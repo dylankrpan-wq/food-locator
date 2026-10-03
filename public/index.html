@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1f7a4d">
+  <title>Food Locator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Food Locator</h1>
+    <p>Say what you're craving. Get the healthiest nearby way to eat it.</p>
+  </header>
+
+  <main>
+    <form id="search" class="search" autocomplete="off">
+      <input id="query" type="search" placeholder="e.g. chicken burrito" aria-label="What are you looking for?">
+      <button id="mic" type="button" class="icon-btn" aria-label="Speak your search" title="Speak your search" hidden>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V22h2v-3.08A7 7 0 0 0 19 12h-2Z"/></svg>
+      </button>
+      <button type="submit" class="primary">Search</button>
+    </form>
+
+    <section class="location" aria-label="Location">
+      <span id="loc-label">Location not set</span>
+      <button id="loc-gps" type="button" class="link">Use my location</button>
+      <form id="loc-form" class="loc-form">
+        <input id="loc-input" type="text" placeholder="or enter a city, address or ZIP" aria-label="City, address or ZIP">
+        <button type="submit">Set</button>
+      </form>
+    </section>
+
+    <form id="prefs">
+      <fieldset class="goals">
+        <legend>Goal</legend>
+        <div id="goal-chips" class="chips"></div>
+      </fieldset>
+
+      <details class="more">
+        <summary>Diet, limits and distance</summary>
+        <div class="grid">
+          <fieldset>
+            <legend>Diet</legend>
+            <label><input type="checkbox" name="vegetarian"> Vegetarian</label>
+            <label><input type="checkbox" name="vegan"> Vegan</label>
+            <label><input type="checkbox" name="glutenFree"> Gluten-free</label>
+          </fieldset>
+          <fieldset>
+            <legend>My limits (per meal, optional)</legend>
+            <label>Max calories <input type="number" name="maxCal" min="0" step="50" inputmode="numeric"></label>
+            <label>Min protein (g) <input type="number" name="minProtein" min="0" step="5" inputmode="numeric"></label>
+            <label>Max sodium (mg) <input type="number" name="maxSodium" min="0" step="100" inputmode="numeric"></label>
+            <label>Max carbs (g) <input type="number" name="maxCarbs" min="0" step="5" inputmode="numeric"></label>
+          </fieldset>
+          <fieldset>
+            <legend>Where</legend>
+            <label>Within
+              <select name="radiusMi">
+                <option value="0.5">0.5 mi</option>
+                <option value="1">1 mi</option>
+                <option value="2" selected>2 mi</option>
+                <option value="5">5 mi</option>
+                <option value="10">10 mi</option>
+              </select>
+            </label>
+            <label><input type="checkbox" name="openOnly"> Open now only</label>
+          </fieldset>
+        </div>
+      </details>
+    </form>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+
+    <section id="results" hidden>
+      <div class="results-head">
+        <h2 id="results-title"></h2>
+        <div class="toggle" role="group" aria-label="View">
+          <button type="button" data-view="cards" aria-pressed="true">Cards</button>
+          <button type="button" data-view="table" aria-pressed="false">Compare</button>
+        </div>
+      </div>
+      <div id="cards"></div>
+      <div id="table" class="table-wrap" hidden></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Nutrition figures are approximate. Items marked <em>Menu item</em> come from the chain's published nutrition guide; items marked <em>Estimate</em> are typical values for that dish and can differ a lot between kitchens. Diet tags don't account for cross-contact, so check with the restaurant if you have an allergy.</p>
+    <p>Places and hours © OpenStreetMap contributors. Your location is sent only to OpenStreetMap services to look up nearby places.</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

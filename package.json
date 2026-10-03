@@ -1,0 +1,11 @@
+{
+  "name": "food-locator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Find nearby food that matches what you're craving and your nutrition goals.",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}
